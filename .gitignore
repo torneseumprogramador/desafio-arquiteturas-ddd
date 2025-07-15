@@ -1,0 +1,78 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+*.log
+
+# Dotnet
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Entity Framework
+Migrations/
+
+# ASP.NET Secrets
+secrets.json
+
+# Test results
+TestResults/
+*.coverage
+*.coveragejson
+
+# Npm
+node_modules/
+
+# Docker
+**/*.pid
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.old
+*.orig
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.nfs*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+
+# Publish
+publish/
+
+# Local NuGet
+*.nupkg
+.nuget/ 

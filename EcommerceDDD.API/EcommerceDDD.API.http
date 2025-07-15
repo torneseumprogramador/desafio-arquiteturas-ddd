@@ -1,0 +1,108 @@
+@EcommerceDDD.API_HostAddress = http://localhost:5134
+
+### Health Check
+GET {{EcommerceDDD.API_HostAddress}}/api/health
+Accept: application/json
+
+### ===== PESSOAS =====
+
+### Criar Pessoa Física
+POST {{EcommerceDDD.API_HostAddress}}/api/person/individual
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "cpf": "12345678901"
+}
+
+### Criar Pessoa Jurídica
+POST {{EcommerceDDD.API_HostAddress}}/api/person/corporate
+Content-Type: application/json
+
+{
+  "nome": "Empresa ABC Ltda",
+  "email": "contato@empresaabc.com",
+  "cnpj": "12345678000199"
+}
+
+### Listar Todas as Pessoas
+GET {{EcommerceDDD.API_HostAddress}}/api/person
+Accept: application/json
+
+### Buscar Pessoa por ID
+GET {{EcommerceDDD.API_HostAddress}}/api/person/{id}
+Accept: application/json
+
+### Buscar Pessoa por Email
+GET {{EcommerceDDD.API_HostAddress}}/api/person/email/joao@email.com
+Accept: application/json
+
+### ===== PRODUTOS =====
+
+### Criar Produto
+POST {{EcommerceDDD.API_HostAddress}}/api/product
+Content-Type: application/json
+
+{
+  "nome": "Smartphone XYZ",
+  "descricao": "Smartphone de última geração",
+  "preco": 1299.99,
+  "estoque": 50
+}
+
+### Listar Todos os Produtos
+GET {{EcommerceDDD.API_HostAddress}}/api/product
+Accept: application/json
+
+### Buscar Produto por ID
+GET {{EcommerceDDD.API_HostAddress}}/api/product/{id}
+Accept: application/json
+
+### Produtos com Estoque Mínimo
+GET {{EcommerceDDD.API_HostAddress}}/api/product/stock/10
+Accept: application/json
+
+### ===== PEDIDOS =====
+
+### Criar Pedido
+POST {{EcommerceDDD.API_HostAddress}}/api/order
+Content-Type: application/json
+
+{
+  "pessoaId": "{personId}",
+  "produtos": [
+    {
+      "produtoId": "{productId}",
+      "quantidade": 2
+    }
+  ]
+}
+
+### Listar Todos os Pedidos
+GET {{EcommerceDDD.API_HostAddress}}/api/order
+Accept: application/json
+
+### Buscar Pedido por ID
+GET {{EcommerceDDD.API_HostAddress}}/api/order/{id}
+Accept: application/json
+
+### Pedidos por Pessoa
+GET {{EcommerceDDD.API_HostAddress}}/api/order/person/{personId}
+Accept: application/json
+
+### Pedidos por Status
+GET {{EcommerceDDD.API_HostAddress}}/api/order/status/Pendente
+Accept: application/json
+
+### Confirmar Pedido
+POST {{EcommerceDDD.API_HostAddress}}/api/order/{orderId}/confirm
+
+### Enviar Pedido
+POST {{EcommerceDDD.API_HostAddress}}/api/order/{orderId}/ship
+
+### Entregar Pedido
+POST {{EcommerceDDD.API_HostAddress}}/api/order/{orderId}/deliver
+
+### Cancelar Pedido
+POST {{EcommerceDDD.API_HostAddress}}/api/order/{orderId}/cancel
