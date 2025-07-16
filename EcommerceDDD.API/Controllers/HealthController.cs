@@ -4,6 +4,7 @@ namespace EcommerceDDD.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Route("/")]
     public class HealthController : ControllerBase
     {
         /// <summary>
@@ -12,12 +13,14 @@ namespace EcommerceDDD.API.Controllers
         [HttpGet]
         public ActionResult<object> Get()
         {
+            var baseUrl = $"{Request.Scheme}://{Request.Host}";
             return Ok(new
             {
                 status = "OK",
                 message = "API Ecommerce DDD está funcionando!",
                 timestamp = DateTime.UtcNow,
-                version = "1.0.0"
+                version = "1.0.0",
+                documentation = $"{baseUrl}/swagger"
             });
         }
     }

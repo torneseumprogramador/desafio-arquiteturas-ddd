@@ -42,26 +42,43 @@ check_docker() {
     fi
 }
 
+# Função para verificar se o SQL Server já está rodando
+check_sql_server_running() {
+    if nc -z localhost 1433 2>/dev/null; then
+        echo -e "${GREEN}✅ SQL Server já está rodando!${NC}"
+        return 0
+    fi
+    return 1
+}
+
 # Função para iniciar Docker
 start_docker() {
+    # Verifica se já está rodando
+    if check_sql_server_running; then
+        return 0
+    fi
+    
     echo -e "${YELLOW}🐳 Iniciando SQL Server...${NC}"
     docker-compose up -d
     
     echo -e "${YELLOW}⏳ Aguardando SQL Server estar pronto...${NC}"
-    sleep 10
+    sleep 15
     
     echo -e "${YELLOW}🔍 Verificando conexão com SQL Server...${NC}"
-    for i in {1..30}; do
-        if docker exec ecommerce-sql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" > /dev/null 2>&1; then
-            echo -e "${GREEN}✅ SQL Server está pronto!${NC}"
+    for i in {1..20}; do
+        # Verifica se a porta está respondendo (mais confiável que sqlcmd)
+        if nc -z localhost 1433 2>/dev/null; then
+            echo -e "${GREEN}✅ SQL Server está pronto! (Porta 1433 respondendo)${NC}"
             return 0
         fi
-        if [ $i -eq 30 ]; then
+        
+        if [ $i -eq 20 ]; then
             echo -e "${RED}❌ Timeout aguardando SQL Server${NC}"
+            echo -e "${YELLOW}💡 Dica: Verifique se o Docker está rodando e tente novamente${NC}"
             return 1
         fi
-        echo -e "${YELLOW}⏳ Tentativa $i/30...${NC}"
-        sleep 2
+        echo -e "${YELLOW}⏳ Tentativa $i/20...${NC}"
+        sleep 3
     done
 }
 
@@ -109,6 +126,14 @@ case "${1:-}" in
     "docker")
         echo -e "${BLUE}🐳 Iniciando Docker...${NC}"
         check_docker
+        
+        # Verifica se já está rodando
+        if check_sql_server_running; then
+            echo -e "${YELLOW}ℹ️ SQL Server já está rodando, não é necessário reiniciar${NC}"
+            exit 0
+        fi
+        
+        # Se não estiver rodando, para containers e inicia
         docker-compose down
         start_docker
         ;;
@@ -137,11 +162,7 @@ case "${1:-}" in
         check_dotnet
         echo -e "${GREEN}✅ Docker e .NET 9 verificados${NC}"
         
-        # Parar containers existentes
-        echo -e "${YELLOW}🛑 Parando containers existentes...${NC}"
-        docker-compose down
-        
-        # Iniciar Docker
+        # Iniciar Docker (só para containers se necessário)
         if ! start_docker; then
             exit 1
         fi
