@@ -233,6 +233,33 @@ curl -X POST "http://localhost:5134/api/pedidos" \
   }'
 ```
 
+## 📁 Scripts de Carga
+
+Para facilitar os testes, criamos scripts que populam o banco de dados com dados de exemplo:
+
+### 📦 Cadastro de Notebooks
+
+```bash
+# Cadastra 10 notebooks pré-definidos
+./scripts/cadastrar-notebooks.sh
+```
+
+### 👥 Cadastro Interativo de Pessoas
+
+```bash
+# Menu interativo para cadastrar pessoas
+./scripts/cadastrar-pessoa.sh
+```
+
+### 📊 Dados Incluídos
+
+- **10 notebooks** de diferentes marcas (MacBook, Dell, Lenovo, etc.)
+- **Preços realistas** variando de R$ 3.999,99 a R$ 18.999,99
+- **Total de 188 unidades** em estoque
+- **Cadastro interativo** de pessoas físicas e jurídicas
+
+Para mais detalhes, consulte: [📁 Scripts de Carga](scripts/README.md)
+
 ## 🛡️ Tratamento de Erros
 
 A API possui um sistema robusto de tratamento de erros que garante respostas consistentes:
