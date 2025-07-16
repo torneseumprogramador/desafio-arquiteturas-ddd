@@ -19,6 +19,7 @@ show_help() {
     echo -e "  ${GREEN}./run.sh docker-stop${NC}        - Para containers Docker"
     echo -e "  ${GREEN}./run.sh migrate${NC}            - Executa migrations"
     echo -e "  ${GREEN}./run.sh run${NC}                - Apenas executa a API"
+    echo -e "  ${GREEN}./run.sh watch${NC}              - Executa dotnet watch run na API"
     echo -e "  ${GREEN}./run.sh help${NC}               - Mostra esta ajuda"
     echo ""
     echo -e "${YELLOW}💡 Exemplos:${NC}"
@@ -150,6 +151,12 @@ case "${1:-}" in
         echo -e "${BLUE}🎯 Executando API...${NC}"
         check_dotnet
         run_api
+        ;;
+    "watch")
+        echo -e "${BLUE}👀 Executando dotnet watch run na API...${NC}"
+        check_dotnet
+        cd EcommerceDDD.API
+        dotnet watch run
         ;;
     "help"|"-h"|"--help")
         show_help
