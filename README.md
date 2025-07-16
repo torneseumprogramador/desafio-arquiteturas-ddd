@@ -251,12 +251,20 @@ Para facilitar os testes, criamos scripts que populam o banco de dados com dados
 ./scripts/cadastrar-pessoa.sh
 ```
 
+### 🛒 Cadastro Interativo de Pedidos
+
+```bash
+# Menu completo para criar pedidos
+./scripts/cadastrar-pedido.sh
+```
+
 ### 📊 Dados Incluídos
 
 - **10 notebooks** de diferentes marcas (MacBook, Dell, Lenovo, etc.)
 - **Preços realistas** variando de R$ 3.999,99 a R$ 18.999,99
 - **Total de 188 unidades** em estoque
 - **Cadastro interativo** de pessoas físicas e jurídicas
+- **Criação completa de pedidos** com seleção de pessoas e produtos
 
 Para mais detalhes, consulte: [📁 Scripts de Carga](scripts/README.md)
 
