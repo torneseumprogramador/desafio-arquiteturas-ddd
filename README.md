@@ -233,6 +233,52 @@ curl -X POST "http://localhost:5134/api/pedidos" \
   }'
 ```
 
+## 🛡️ Tratamento de Erros
+
+A API possui um sistema robusto de tratamento de erros que garante respostas consistentes:
+
+### 📋 Tipos de Erro
+
+| Código | Tipo | Descrição |
+|--------|------|-----------|
+| 400 | `ValidationError` | Erro de validação (CPF/CNPJ inválido, dados obrigatórios, etc.) |
+| 400 | `BusinessError` | Erro de negócio (email já existe, CPF já cadastrado, etc.) |
+| 404 | `NotFoundError` | Recurso não encontrado |
+| 500 | `InternalServerError` | Erro interno do servidor |
+
+### 📝 Formato da Resposta de Erro
+
+```json
+{
+  "message": "CPF inválido",
+  "type": "ValidationError",
+  "timestamp": "2024-01-15T10:30:00Z"
+}
+```
+
+### 🔍 Exemplos de Validação
+
+**CPF Inválido:**
+```bash
+curl -X POST "http://localhost:5134/api/pessoas/fisica" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "senha": "123456",
+    "cpf": "12345678900"
+  }'
+```
+
+**Resposta:**
+```json
+{
+  "message": "CPF inválido",
+  "type": "ValidationError",
+  "timestamp": "2024-01-15T10:30:00Z"
+}
+```
+
 ## 🔧 Configuração do Banco de Dados
 
 O projeto utiliza **SQL Server** rodando em **Docker** com as seguintes configurações:

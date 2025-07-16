@@ -29,13 +29,13 @@ namespace EcommerceDDD.Infrastructure.Repositories
         public async Task<IndividualPerson> GetByCPFAsync(CPF cpf)
         {
             return await _context.Set<IndividualPerson>()
-                .FirstOrDefaultAsync(p => p.CPF.Value == cpf.Value);
+                .FirstOrDefaultAsync(p => p.CPF == cpf);
         }
 
         public async Task<CorporatePerson> GetByCNPJAsync(CNPJ cnpj)
         {
             return await _context.Set<CorporatePerson>()
-                .FirstOrDefaultAsync(p => p.CNPJ.Value == cnpj.Value);
+                .FirstOrDefaultAsync(p => p.CNPJ == cnpj);
         }
 
         public async Task<IEnumerable<IPerson>> GetAllAsync()
@@ -91,13 +91,13 @@ namespace EcommerceDDD.Infrastructure.Repositories
         public async Task<bool> ExistsByCPFAsync(CPF cpf)
         {
             return await _context.Set<IndividualPerson>()
-                .AnyAsync(p => p.CPF.Value == cpf.Value);
+                .AnyAsync(p => p.CPF == cpf);
         }
 
         public async Task<bool> ExistsByCNPJAsync(CNPJ cnpj)
         {
             return await _context.Set<CorporatePerson>()
-                .AnyAsync(p => p.CNPJ.Value == cnpj.Value);
+                .AnyAsync(p => p.CNPJ == cnpj);
         }
     }
 } 

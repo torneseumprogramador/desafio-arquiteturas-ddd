@@ -1,6 +1,7 @@
 using EcommerceDDD.Infrastructure;
 using EcommerceDDD.Application;
 using Microsoft.OpenApi.Models;
+using EcommerceDDD.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Adicionar middleware de tratamento de exceções
+app.UseMiddleware<ValidationExceptionMiddleware>();
 
 app.UseAuthorization();
 
