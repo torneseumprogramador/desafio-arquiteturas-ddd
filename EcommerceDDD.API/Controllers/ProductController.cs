@@ -5,7 +5,7 @@ using EcommerceDDD.Application.Interfaces;
 namespace EcommerceDDD.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/produtos")]
     public class ProductController : ControllerBase
     {
         private readonly IProductApplicationService _productService;
@@ -62,7 +62,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Lista produtos com estoque mínimo
         /// </summary>
-        [HttpGet("stock/{minStock}")]
+        [HttpGet("estoque/{minStock}")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetByStock(int minStock)
         {
             var result = await _productService.GetByStockAsync(minStock);

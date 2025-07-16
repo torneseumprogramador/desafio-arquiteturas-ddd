@@ -207,7 +207,7 @@ namespace EcommerceDDD.Application.Services
             {
                 Id = order.Id,
                 PersonId = order.PersonId,
-                PersonName = person?.Name,
+                PersonName = person?.Name ?? "Pessoa não encontrada",
                 Status = order.Status.ToString(),
                 TotalAmount = order.TotalAmount,
                 CreatedAt = order.CreatedAt,

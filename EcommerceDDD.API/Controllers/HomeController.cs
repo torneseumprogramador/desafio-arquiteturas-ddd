@@ -30,9 +30,9 @@ namespace EcommerceDDD.API.Controllers
                 },
                 endpoints = new
                 {
-                    persons = $"{baseUrl}/api/person",
-                    products = $"{baseUrl}/api/product",
-                    orders = $"{baseUrl}/api/order"
+                    persons = $"{baseUrl}/api/pessoas",
+                    products = $"{baseUrl}/api/produtos",
+                    orders = $"{baseUrl}/api/pedidos"
                 },
                 architecture = new
                 {

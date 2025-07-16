@@ -129,42 +129,42 @@ Após executar o projeto, a API estará disponível em:
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| POST | `/api/person/individual` | Criar pessoa física |
-| POST | `/api/person/corporate` | Criar pessoa jurídica |
-| GET | `/api/person` | Listar todas as pessoas |
-| GET | `/api/person/{id}` | Buscar pessoa por ID |
-| GET | `/api/person/email/{email}` | Buscar pessoa por email |
-| GET | `/api/person/individuals` | Listar pessoas físicas |
-| GET | `/api/person/corporates` | Listar pessoas jurídicas |
-| PUT | `/api/person/{id}/individual` | Atualizar pessoa física |
-| PUT | `/api/person/{id}/corporate` | Atualizar pessoa jurídica |
-| DELETE | `/api/person/{id}` | Remover pessoa |
+| POST | `/api/pessoas/fisica` | Criar pessoa física |
+| POST | `/api/pessoas/juridica` | Criar pessoa jurídica |
+| GET | `/api/pessoas` | Listar todas as pessoas |
+| GET | `/api/pessoas/{id}` | Buscar pessoa por ID |
+| GET | `/api/pessoas/email/{email}` | Buscar pessoa por email |
+| GET | `/api/pessoas/fisicas` | Listar pessoas físicas |
+| GET | `/api/pessoas/juridicas` | Listar pessoas jurídicas |
+| PUT | `/api/pessoas/{id}/fisica` | Atualizar pessoa física |
+| PUT | `/api/pessoas/{id}/juridica` | Atualizar pessoa jurídica |
+| DELETE | `/api/pessoas/{id}` | Remover pessoa |
 
 ### 📦 Produtos (Product)
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| POST | `/api/product` | Criar produto |
-| GET | `/api/product` | Listar todos os produtos |
-| GET | `/api/product/{id}` | Buscar produto por ID |
-| GET | `/api/product/stock/{minStock}` | Produtos com estoque mínimo |
-| PUT | `/api/product/{id}` | Atualizar produto |
-| DELETE | `/api/product/{id}` | Remover produto |
+| POST | `/api/produtos` | Criar produto |
+| GET | `/api/produtos` | Listar todos os produtos |
+| GET | `/api/produtos/{id}` | Buscar produto por ID |
+| GET | `/api/produtos/estoque/{minStock}` | Produtos com estoque mínimo |
+| PUT | `/api/produtos/{id}` | Atualizar produto |
+| DELETE | `/api/produtos/{id}` | Remover produto |
 
 ### 🛒 Pedidos (Order)
 
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| POST | `/api/order` | Criar pedido |
-| GET | `/api/order` | Listar todos os pedidos |
-| GET | `/api/order/{id}` | Buscar pedido por ID |
-| GET | `/api/order/person/{personId}` | Pedidos por pessoa |
-| GET | `/api/order/status/{status}` | Pedidos por status |
-| POST | `/api/order/{id}/confirm` | Confirmar pedido |
-| POST | `/api/order/{id}/ship` | Enviar pedido |
-| POST | `/api/order/{id}/deliver` | Entregar pedido |
-| POST | `/api/order/{id}/cancel` | Cancelar pedido |
-| DELETE | `/api/order/{id}` | Remover pedido |
+| POST | `/api/pedidos` | Criar pedido |
+| GET | `/api/pedidos` | Listar todos os pedidos |
+| GET | `/api/pedidos/{id}` | Buscar pedido por ID |
+| GET | `/api/pedidos/pessoa/{personId}` | Pedidos por pessoa |
+| GET | `/api/pedidos/status/{status}` | Pedidos por status |
+| POST | `/api/pedidos/{id}/confirmar` | Confirmar pedido |
+| POST | `/api/pedidos/{id}/enviar` | Enviar pedido |
+| POST | `/api/pedidos/{id}/entregar` | Entregar pedido |
+| POST | `/api/pedidos/{id}/cancelar` | Cancelar pedido |
+| DELETE | `/api/pedidos/{id}` | Remover pedido |
 
 ## 🏛️ Conceitos de DDD Implementados
 
@@ -195,7 +195,7 @@ Após executar o projeto, a API estará disponível em:
 ### Criar Pessoa Física
 
 ```bash
-curl -X POST "http://localhost:5134/api/person/individual" \
+curl -X POST "http://localhost:5134/api/pessoas/fisica" \
   -H "Content-Type: application/json" \
   -d '{
     "nome": "João Silva",
@@ -207,7 +207,7 @@ curl -X POST "http://localhost:5134/api/person/individual" \
 ### Criar Produto
 
 ```bash
-curl -X POST "http://localhost:5134/api/product" \
+curl -X POST "http://localhost:5134/api/produtos" \
   -H "Content-Type: application/json" \
   -d '{
     "nome": "Smartphone XYZ",
@@ -220,7 +220,7 @@ curl -X POST "http://localhost:5134/api/product" \
 ### Criar Pedido
 
 ```bash
-curl -X POST "http://localhost:5134/api/order" \
+curl -X POST "http://localhost:5134/api/pedidos" \
   -H "Content-Type: application/json" \
   -d '{
     "pessoaId": "guid-da-pessoa",

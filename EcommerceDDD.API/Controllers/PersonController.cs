@@ -5,7 +5,7 @@ using EcommerceDDD.Application.Interfaces;
 namespace EcommerceDDD.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/pessoas")]
     public class PersonController : ControllerBase
     {
         private readonly IPersonApplicationService _personService;
@@ -18,7 +18,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Cria uma nova pessoa física
         /// </summary>
-        [HttpPost("individual")]
+        [HttpPost("fisica")]
         public async Task<ActionResult<PersonDto>> CreateIndividual([FromBody] CreateIndividualPersonDto dto)
         {
             try
@@ -35,7 +35,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Cria uma nova pessoa jurídica
         /// </summary>
-        [HttpPost("corporate")]
+        [HttpPost("juridica")]
         public async Task<ActionResult<PersonDto>> CreateCorporate([FromBody] CreateCorporatePersonDto dto)
         {
             try
@@ -96,7 +96,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Lista todas as pessoas físicas
         /// </summary>
-        [HttpGet("individuals")]
+        [HttpGet("fisicas")]
         public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllIndividuals()
         {
             var result = await _personService.GetAllIndividualsAsync();
@@ -106,7 +106,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Lista todas as pessoas jurídicas
         /// </summary>
-        [HttpGet("corporates")]
+        [HttpGet("juridicas")]
         public async Task<ActionResult<IEnumerable<PersonDto>>> GetAllCorporates()
         {
             var result = await _personService.GetAllCorporatesAsync();
@@ -116,7 +116,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Atualiza uma pessoa física
         /// </summary>
-        [HttpPut("{id}/individual")]
+        [HttpPut("{id}/fisica")]
         public async Task<ActionResult<PersonDto>> UpdateIndividual(Guid id, [FromBody] CreateIndividualPersonDto dto)
         {
             try
@@ -133,7 +133,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Atualiza uma pessoa jurídica
         /// </summary>
-        [HttpPut("{id}/corporate")]
+        [HttpPut("{id}/juridica")]
         public async Task<ActionResult<PersonDto>> UpdateCorporate(Guid id, [FromBody] CreateCorporatePersonDto dto)
         {
             try

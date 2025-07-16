@@ -5,7 +5,7 @@ using EcommerceDDD.Infrastructure.Data;
 namespace EcommerceDDD.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/health")]
     public class HealthController : ControllerBase
     {
         private readonly EcommerceDbContext _context;

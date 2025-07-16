@@ -5,7 +5,7 @@ using EcommerceDDD.Application.Interfaces;
 namespace EcommerceDDD.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/pedidos")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderApplicationService _orderService;
@@ -62,7 +62,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Lista pedidos por pessoa
         /// </summary>
-        [HttpGet("person/{personId}")]
+        [HttpGet("pessoa/{personId}")]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetByPerson(Guid personId)
         {
             var result = await _orderService.GetByPersonAsync(personId);
@@ -89,7 +89,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Confirma um pedido
         /// </summary>
-        [HttpPost("{id}/confirm")]
+        [HttpPost("{id}/confirmar")]
         public async Task<ActionResult<OrderDto>> Confirm(Guid id)
         {
             try
@@ -106,7 +106,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Envia um pedido
         /// </summary>
-        [HttpPost("{id}/ship")]
+        [HttpPost("{id}/enviar")]
         public async Task<ActionResult<OrderDto>> Ship(Guid id)
         {
             try
@@ -123,7 +123,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Entrega um pedido
         /// </summary>
-        [HttpPost("{id}/deliver")]
+        [HttpPost("{id}/entregar")]
         public async Task<ActionResult<OrderDto>> Deliver(Guid id)
         {
             try
@@ -140,7 +140,7 @@ namespace EcommerceDDD.API.Controllers
         /// <summary>
         /// Cancela um pedido
         /// </summary>
-        [HttpPost("{id}/cancel")]
+        [HttpPost("{id}/cancelar")]
         public async Task<ActionResult<OrderDto>> Cancel(Guid id)
         {
             try
